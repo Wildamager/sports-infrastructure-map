@@ -1,4 +1,4 @@
-const apiKey = 'pk.eyJ1Ijoic21mMzIxIiwiYSI6ImNrdW54a2dyaTI1b2EycW42Z3BxMWw4OTMifQ.VVKT-nNd9yZK5QwyHHp8Kg'
+const apiKey = window.MAPBOX_TOKEN
 
 const mymap = L.map('map_hot').setView([55.740, 37.615], 9);
 var test0 = L.layerGroup();

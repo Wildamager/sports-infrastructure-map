@@ -1,0 +1,19 @@
+# Secrets / local config
+.env
+config.local.js
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# GeoJSON exports pulled from the source database
+static/map/*.geojson.local
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

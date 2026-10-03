@@ -198,34 +198,25 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
         </div>
         <div id="map" class="map">
         </div>
-        <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiYW5kcnV4YTAiLCJhIjoiY2t2MWF0aXNjMHB3eDJybHAwa2tpZHZpbCJ9.vYJxANxTeYg_RfOCtc_hQQ';
-    
+<script>
+            mapboxgl.accessToken = window.MAPBOX_TOKEN;
+
             const map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/light-v10',
                 center: [37.615, 55.740],
                 zoom: 9,
             });
-    
+
             map.on('load', () => {
                 map.addSource('earthquakes', {
                     type: 'geojson',
-                    // Use a URL for the value for the `data` property.
-                    data: 'http://127.0.0.1:5000/data' //<---- not 127.0.0.1, need your IP
+                    data: '/data'
                 });
-    
-    
-    
-                var request = new XMLHttpRequest();
-                request.open('GET', 'http://127.0.0.1:5000/data');
-                request.responseType = 'json';
-                request.send();
-    
-                request.onload = function() {
-                    var result = request.response;
-                    buildLocationList(result);
-                }
+
+                fetch('/data')
+                    .then((response) => response.json())
+                    .then(buildLocationList);
     
     
                 map.on('click', ({
@@ -264,16 +255,19 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
                 function buildLocationList({
                     features
                 }) {
+                    if (!features || !features.length) return;
+
+                    map.addLayer({
+                        'id': 'locations',
+                        'type': 'circle',
+                        'source': 'earthquakes',
+                    });
+
                     for (const {
                             properties
                         }
                         of features) {
-    
-                        map.addLayer({
-                            'id': 'locations',
-                            'type': 'circle',
-                            'source': 'earthquakes',
-                        });
+
                         /* Add a new listing section to the sidebar. */
                         const listings = document.getElementById('listings');
                         const listing = listings.appendChild(document.createElement('div'));
