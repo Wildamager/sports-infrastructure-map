@@ -4,9 +4,7 @@ Flask web application for exploring a city dataset of sports facilities: an
 interactive map with a searchable side list, heat maps of accessibility, score
 dials per sport, and a recommendations page.
 
-Team project from the LCT (Linux CTF) hackathon, team RA1NF0RCE.
-
-<!-- Screenshots: docs/screenshots/map.png -->
+Team project from the LCT hackathon, team RA1NF0RCE.
 
 ## Features
 
@@ -28,8 +26,8 @@ Leaflet.heat · jQuery 2 · Bootstrap 4 · Raphael/JustGage
 ## Getting started
 
 ```bash
-git clone https://github.com/Wildamager/crowd-pulse-map.git
-cd crowd-pulse-map
+git clone https://github.com/Wildamager/sports-infrastructure-map.git
+cd sports-infrastructure-map
 python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
@@ -67,6 +65,9 @@ Without a token the pages still load, but the map area stays empty.
 Feature properties used by the front end: `Object`, `About`, `Num`, `Dostup`,
 `Dostup_word`, `Plot_nasel`, `Type_of_sport`, `Name_organisation`,
 `Sq_sportzon`, `Id_object`, `Id_sportzon`.
+
+Routes: `/` (map with side list), `/analytics` (score dials),
+`/recommendations`, `/data` (GeoJSON).
 
 ## Project structure
 
